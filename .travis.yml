@@ -1,29 +1,40 @@
 dist: xenial
+
 language: python
+
 services:
-- postgresql
+  - postgresql
+
 python:
-- 3.8
+  - 3.8
+
 before_install:
-- python --version
-- pip install -U pip
-- pip install codecov
+  - python --version
+  - pip install -U pip
+  - pip install codecov
+
 env:
-- DJANGO_VERSION=3.1.2
+  - DJANGO_VERSION=3.1.2
+
 install:
-- pip install -r requirements.txt
-- pip install -q Django==3.1.2
-- python setup.py -q install
+  - pip install -r requirements.txt
+  - pip install -q Django==3.1.2
+  - python setup.py -q install
+
 before_script:
-- psql -c 'create database travis_ci_test;' -U postgres
-- python manage.py collectstatic --noinput
-- python manage.py makemigrations
-- python manage.py migrate
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - python manage.py collectstatic --noinput
+  - python manage.py makemigrations
+  - python manage.py migrate
+
 script:
-- python manage.py test
+  - python manage.py test
+
 after_success:
-- codecov
+  - codecov
+
 before_deploy: echo 'ready?'
+
 deploy:
   provider: heroku
   api_key:
