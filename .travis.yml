@@ -28,7 +28,7 @@ before_script:
   - python manage.py migrate
 
 script:
-  - coverage report -m
+  - python manage.py test
 
 after_success:
   - codecov
@@ -42,6 +42,3 @@ deploy:
   app: dummy-register
   on:
     repo: faisaladisoe/House-of-great
-
-after_deploy:
-  ./deployment.sh
