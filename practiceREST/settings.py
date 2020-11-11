@@ -100,7 +100,8 @@ DATABASES = {
         'NAME': 'restapi',
         'USER': 'postgres',
         'PASSWORD': os.environ.get('DB_PASS'),
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'POST': '5432'
     }
 }
 

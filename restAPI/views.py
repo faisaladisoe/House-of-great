@@ -23,14 +23,14 @@ def index(request):
             sorting = form.cleaned_data['sorting']
 
     # Condition to satisfy the user wish
+    data = data.filter(nickname__icontains = '%s' % search)
     if groupby != 'All':
-        data = data.filter(classroom = groupby).filter(nickname__icontains = '%s' % search)
+        data = data.filter(classroom = groupby)
         if sorting == 'Ascending':
             data = data.order_by('nickname')
         else:
             data = data.order_by('-nickname')
     else:
-        data = data.filter(nickname__icontains = '%s' % search)
         if sorting == 'Ascending':
             data = data.order_by('nickname')
         else:
